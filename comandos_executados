@@ -1,0 +1,50 @@
+
+docker pull ubuntu
+
+docker images
+
+docker run ubuntu echo "hello world"
+
+docker run --name servico -d ubuntu sh -c "while true; do echo hello world; sleep 1; done"
+
+docker ps
+
+docker attach servico
+
+docker stop servico
+
+docker start servico
+
+docker restart servico
+
+docker run --name interativo -i -t ubuntu bash
+
+sudo apt-get -y update
+
+sudo apt-get install -y nginx
+
+sudo apt-get -y install vim
+
+service nginx status
+
+sudo vim /etc/nginx/nginx.conf
+
+daemon off;
+
+docker commit interativo coach/nginx
+
+docker run --name web -d -p 80 coach/nginx sudo service nginx start
+
+curl 127.0.0.1
+
+http://localhost
+
+docker rm -f web
+
+docker run --name web -d -p 80:80 -v /home/bruno/git/coach-docker/site/:/usr/share/nginx/html coach/nginx sudo service nginx start
+
+docker build -t coach/nginx .
+
+docker run --name web -d -p 80:80 coach/nginx
+
+docker tag coach/nginx brunobelarmino/coach:1.0
